@@ -1,4 +1,5 @@
 import { prisma } from './db';
+import { Store, Product, DailyInventorySales } from '@prisma/client';
 
 export interface StoreMetrics {
   storeId: string;
@@ -88,15 +89,15 @@ export async function calculateAllMetrics(forceRefresh = false) {
     }
   });
 
-  const productMap = new Map(products.map(p => [p.sku, p]));
-  const storeMap = new Map(stores.map(s => [s.id, s]));
+  const productMap = new Map<string, Product>(products.map((p: Product) => [p.sku, p]));
+  const storeMap = new Map<string, Store>(stores.map((s: Store) => [s.id, s]));
 
   // Get current day records (on maxDate)
   const currentDayRecords = salesRecords.filter(
-    r => r.date.toISOString().split('T')[0] === maxDateString.split('T')[0]
+    (r: DailyInventorySales) => r.date.toISOString().split('T')[0] === maxDateString.split('T')[0]
   );
-  const currentDayMap = new Map(
-    currentDayRecords.map(r => [`${r.storeId}_${r.sku}`, r])
+  const currentDayMap = new Map<string, DailyInventorySales>(
+    currentDayRecords.map((r: DailyInventorySales) => [`${r.storeId}_${r.sku}`, r])
   );
 
   // Group transactions by storeId and sku to compute period metrics
@@ -130,7 +131,7 @@ export async function calculateAllMetrics(forceRefresh = false) {
       let unitsReceivedPeriod = 0;
       
       // Sort group by date to find first opening stock
-      group.sort((a, b) => a.date.getTime() - b.date.getTime());
+      group.sort((a: DailyInventorySales, b: DailyInventorySales) => a.date.getTime() - b.date.getTime());
       const firstOpeningStock = group[0].openingStock;
 
       // Trailing sales
@@ -231,13 +232,13 @@ export async function calculateAllMetrics(forceRefresh = false) {
     }
 
     // Sum initial stocks for all SKUs in this store
-    totalOpeningStock = Object.values(storeSkuInitStock).reduce((a, b) => a + b, 0);
+    totalOpeningStock = Object.values(storeSkuInitStock).reduce((a: number, b: number) => a + b, 0);
 
     const sellThroughRate = (unitsSold / (totalOpeningStock + totalUnitsReceived)) * 100;
 
     // Average stock over all days
     const dailyOpeningStocks = Object.values(dateStockSums);
-    const averageStock = dailyOpeningStocks.reduce((a, b) => a + b, 0) / dailyOpeningStocks.length;
+    const averageStock = dailyOpeningStocks.reduce((a: number, b: number) => a + b, 0) / dailyOpeningStocks.length;
 
     // Inventory Turnover
     const inventoryTurnover = averageStock > 0 ? unitsSold / averageStock : 0;
