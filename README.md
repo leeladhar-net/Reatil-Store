@@ -90,10 +90,6 @@ The Retail Store Analytics dashboard provides a unified dashboard featuring:
 3. **Configure Environment Variables**:
    Create a `.env` file in the root of the project (if not present) and add your Gemini API Key:
    ```env
-   DATABASE_URL="file:./dev.db"
-   GEMINI_API_KEY="your_gemini_api_key_here"
-   ```
-
 4. **Initialize Database and Run Migrations**:
    ```bash
    npx prisma migrate dev --name init
