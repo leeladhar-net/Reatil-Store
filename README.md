@@ -63,7 +63,7 @@ The Retail Store Analytics dashboard provides a unified dashboard featuring:
 
 ## 4. AI Integration & Cache Policy
 
-- **Model Used**: `gemini-1.5-flash` via the `@google/generative-ai` SDK.
+- **Model Used**: `gemini-3.5-flash` via the `@google/genai` SDK.
 - **Data Privacy & Cost Reduction**: Instead of sending raw, granular transaction logs (thousands of rows) to the LLM, the **Metrics Engine** calculates aggregates (KPIs, top/bottom performing stores, low cover alerts, stagnant SKUs) first. This summarized metadata is sent inside the prompt.
 - **Cache Strategy**: AI Insights are generated and stored in a local cache file (`dev_insights_cache.json`). The application retrieves insights from the cache on page load. Users can trigger a fresh analysis by clicking the **Regenerate** button, preventing unnecessary API expenses.
 
@@ -121,3 +121,28 @@ The Retail Store Analytics dashboard provides a unified dashboard featuring:
 4. **Days of Stock Cover**: Calculated as `current_stock / trailing_7_day_sales_velocity`. If a SKU has zero sales over the trailing 7 days, its cover is set to `999` days (or `0` if current stock is also `0`).
 5. **Dead Stock Warning**: Triggered if a SKU has stock on hand but has generated `0` sales in the trailing 30 days.
 6. **Store Performance Score Weights**: Weighted composite index of Revenue (50%), Sell-Through % (30%), and Turnover (20%), normalized out of 100 relative to the highest-performing store.
+
+---
+
+## 7. Deployment Instructions
+
+### GitHub Repository Push
+1. Create a new empty repository on [GitHub](https://github.com/new). Do **not** initialize it with a README, `.gitignore`, or License.
+2. Add the remote origin URL, set the branch to `main`, and push your code:
+   ```bash
+   git remote add origin <your-github-repo-url>
+   git branch -M main
+   git push -u origin main
+   ```
+
+### Render Deployment (Web Service)
+1. Create a new **Web Service** on [Render](https://render.com).
+2. Connect your GitHub repository.
+3. Configure the following deployment parameters:
+   - **Runtime**: `Node`
+   - **Build Command**: `npm install --legacy-peer-deps && npx prisma generate && node prisma/seed.js && npm run build`
+   - **Start Command**: `npm run start`
+4. Add the following **Environment Variables** in Render's "Environment" tab:
+   - `DATABASE_URL`: `file:./dev.db`
+   - `GEMINI_API_KEY`: `your_gemini_api_key_here` (e.g. the AQ. auth key)
+5. Click **Deploy Web Service**. Render will install packages, compile the database client, seed the transaction history, build the production bundle, and run it. Custom assets and database states are safely built directly into the container.
