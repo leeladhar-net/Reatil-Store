@@ -1,0 +1,17 @@
+name: Render Keep Alive
+
+on:
+  schedule:
+    # Run every 12 minutes (Render free tier spins down after 15 minutes of inactivity)
+    - cron: '*/12 * * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Web Service
+        run: |
+          # Replace the URL below with your actual live Render application URL if it is different
+          curl -I -s https://reatil-store.onrender.com/ > /dev/null
+          echo "Ping sent to Render deployment."
