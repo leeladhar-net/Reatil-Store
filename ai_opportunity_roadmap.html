@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Opportunity Roadmap — Neeman's</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --bg: #09090b;
+      --card-bg: #18181b;
+      --text: #f4f4f5;
+      --text-muted: #a1a1aa;
+      --border: #27272a;
+      --accent: #818cf8;
+      --success: #34d399;
+      --warning: #fbcfe8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 30px;
+    }
+
+    .logo-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary), #818cf8);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 10px;
+      background: linear-gradient(to right, #ffffff, var(--text-muted));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .roadmap-list {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--primary);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      gap: 15px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-number {
+      background-color: var(--border);
+      color: var(--text-muted);
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .hours-badge {
+      background-color: rgba(79, 70, 229, 0.15);
+      border: 1px solid rgba(79, 70, 229, 0.3);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field-label {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .field-value {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .highlight {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .tech-stack {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 5px;
+    }
+
+    .tech-tag {
+      background-color: #27272a;
+      border: 1px solid #3f3f46;
+      color: #e4e4e7;
+      font-family: monospace;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    /* Print styling to ensure high quality PDF */
+    @media print {
+      body {
+        background-color: white;
+        color: black;
+        padding: 0;
+      }
+      
+      .container {
+        max-width: 100%;
+      }
+
+      h1 {
+        -webkit-text-fill-color: black;
+      }
+
+      .card {
+        background-color: white;
+        border: 1px solid #e4e4e7;
+        page-break-inside: avoid;
+        box-shadow: none;
+        margin-bottom: 20px;
+      }
+
+      .card::before {
+        background: #4f46e5;
+      }
+
+      .tech-tag {
+        background-color: #f4f4f5;
+        border: 1px solid #e4e4e7;
+        color: #18181b;
+      }
+
+      .hours-badge {
+        background-color: #f4f4f5;
+        border: 1px solid #d4d4d8;
+        color: #4f46e5;
+      }
+
+      .field-value {
+        color: #27272a;
+      }
+
+      .field-label {
+        color: #4f46e5;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo-badge">Neeman's AI Internship Assignment</div>
+      <h1>AI Opportunity Roadmap</h1>
+      <p class="subtitle">Prioritized list of 10 strategic AI opportunities to drive supply chain margins, reduce return rates, and personalize customer experiences.</p>
+    </header>
+
+    <div class="roadmap-list">
+      <!-- 1 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="card-number">1</span>
+            <span>Conversational Size & Fit Advisor (Pre-Purchase)</span>
+          </div>
+          <span class="hours-badge">40 hours saved/week</span>
+        </div>
+        <div class="field">
+          <div class="field-label">Business Problem</div>
+          <div class="field-value">Sizing and fit discrepancies are the #1 driver of product returns for online footwear brands, costing Neeman's substantial logistics fees and inventory write-offs.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Proposed AI Solution</div>
+          <div class="field-value">Integrate a Gemini-powered conversational assistant that prompts users about their current brand sizing (e.g., "I wear Nike 9") and cross-references it with Neeman's internal sizing chart and material flexibility (e.g., merino wool stretch vs loafer leather stiffness) to recommend the optimal size.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Expected Business Impact</div>
+          <div class="field-value highlight">25% reduction in size-related return rates; 12% increase in pre-purchase conversion rate.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Suggested Tech Stack</div>
+          <div class="tech-stack">
+            <span class="tech-tag">Gemini Pro API</span>
+            <span class="tech-tag">Shopify API</span>
+            <span class="tech-tag">Next.js</span>
+            <span class="tech-tag">Tailwind CSS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="card-number">2</span>
+            <span>Multi-Variate Demand Forecasting & Replenishment Model</span>
+          </div>
+          <span class="hours-badge">15 hours saved/week</span>
+        </div>
+        <div class="field">
+          <div class="field-label">Business Problem</div>
+          <div class="field-value">Retail stores face stockouts on popular sizes (e.g. Classic Sneakers in size 9) while accumulating dead stock on slow-moving seasonal lines.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Proposed AI Solution</div>
+          <div class="field-value">A predictive regression model that aggregates historical sales velocity, current store stocks, weather patterns (for boot vs sandal seasonality), and Google Trends data to forecast SKU-level demand.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Expected Business Impact</div>
+          <div class="field-value highlight">15% reduction in capital locked in safety stock; 8% increase in sell-through rate.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Suggested Tech Stack</div>
+          <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">XGBoost</span>
+            <span class="tech-tag">Prophet</span>
+            <span class="tech-tag">SQLite</span>
+            <span class="tech-tag">BigQuery</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="card-number">3</span>
+            <span>Product Feedback & Review Sentiment Analyzer for R&D</span>
+          </div>
+          <span class="hours-badge">12 hours saved/week</span>
+        </div>
+        <div class="field">
+          <div class="field-label">Business Problem</div>
+          <div class="field-value">Product design and R&D teams lack structured, aggregated feedback on comfort, durability, and fabric quality across product lines (e.g. heel rubbing, mesh wear).</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Proposed AI Solution</div>
+          <div class="field-value">An LLM agent that scrapes product reviews from Amazon, Flipkart, Myntra, and the Neeman's website, extracts specific product critiques (e.g., "sole wears out in 3 months"), and categorizes them into engineering issues.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Expected Business Impact</div>
+          <div class="field-value highlight">Accelerates product feedback loops by 60%, resulting in higher quality subsequent shoe runs.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Suggested Tech Stack</div>
+          <div class="tech-stack">
+            <span class="tech-tag">BeautifulSoup (Python)</span>
+            <span class="tech-tag">Gemini API</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">Hugging Face</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="card-number">4</span>
+            <span>Hyper-Personalized Marketing Copy & Assortment Generator</span>
+          </div>
+          <span class="hours-badge">20 hours saved/week</span>
+        </div>
+        <div class="field">
+          <div class="field-label">Business Problem</div>
+          <div class="field-value">Email and SMS marketing copy is often generic, leading to low click-through rates (CTR) and high unsubscribe rates.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Proposed AI Solution</div>
+          <div class="field-value">A marketing copilot that connects to Shopify customer transaction history to draft personalized product recommendations, email subject lines, and ad creatives tailored to customer segment buying behaviors.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Expected Business Impact</div>
+          <div class="field-value highlight">18% improvement in email marketing conversion rates (revenue per email sent).</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Suggested Tech Stack</div>
+          <div class="tech-stack">
+            <span class="tech-tag">OpenAI GPT-4</span>
+            <span class="tech-tag">Klaviyo API</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Node.js</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="card-number">5</span>
+            <span>First-Line AI Support Agent (Shopify & WhatsApp)</span>
+          </div>
+          <span class="hours-badge">30 hours saved/week</span>
+        </div>
+        <div class="field">
+          <div class="field-label">Business Problem</div>
+          <div class="field-value">Customer support spends hours answering routine transactional queries ("Where is my order?", "Can I change my delivery address?").</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Proposed AI Solution</div>
+          <div class="field-value">An autonomous chat agent integrated into WhatsApp and Shopify that performs customer verification and resolves common queries using real-time shipment/inventory API hooks, passing complex issues to humans.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Expected Business Impact</div>
+          <div class="field-value highlight">60% of basic inquiries resolved instantly; 45% reduction in overall customer ticket resolution time.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Suggested Tech Stack</div>
+          <div class="tech-stack">
+            <span class="tech-tag">LangChain</span>
+            <span class="tech-tag">Pinecone (RAG)</span>
+            <span class="tech-tag">Shopify API</span>
+            <span class="tech-tag">WhatsApp Business API</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="card-number">6</span>
+            <span>Competitor Catalog & Pricing Intelligence Agent</span>
+          </div>
+          <span class="hours-badge">8 hours saved/week</span>
+        </div>
+        <div class="field">
+          <div class="field-label">Business Problem</div>
+          <div class="field-value">Manual pricing audits of competitors (Red Tape, Metro, Skechers) are slow and fail to capture temporary flash sales or assortment gaps.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Proposed AI Solution</div>
+          <div class="field-value">A scheduled scraping agent that monitors competitor websites, matches identical categories, and compares prices, alerting merchandisers of pricing opportunities or volume threats.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Expected Business Impact</div>
+          <div class="field-value highlight">Protects margin by dynamically matching competitive prices without losing conversion momentum.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Suggested Tech Stack</div>
+          <div class="tech-stack">
+            <span class="tech-tag">Scrapy</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">OpenAI API (Matching)</span>
+            <span class="tech-tag">PostgreSQL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="card-number">7</span>
+            <span>Computer Vision Returns Quality Classifier</span>
+          </div>
+          <span class="hours-badge">15 hours saved/week</span>
+        </div>
+        <div class="field">
+          <div class="field-label">Business Problem</div>
+          <div class="field-value">Returned shoes must be manually inspected in the warehouse to check if they have been worn outdoors or damaged, leading to processing bottlenecks.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Proposed AI Solution</div>
+          <div class="field-value">A custom mobile application for warehouse inspectors. The inspector takes a picture of the sole and upper shoe, and a computer vision model classifies the item as "Like New" (restockable) or "Damaged/Worn" (write-off).</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Expected Business Impact</div>
+          <div class="field-value highlight">50% faster returns check-in; prevents worn/damaged stock from being accidentally resold.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Suggested Tech Stack</div>
+          <div class="tech-stack">
+            <span class="tech-tag">PyTorch</span>
+            <span class="tech-tag">Google Cloud Vision API</span>
+            <span class="tech-tag">React Native Mobile</span>
+            <span class="tech-tag">Node.js</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="card-number">8</span>
+            <span>Social Listening & Trend Prediction Agent</span>
+          </div>
+          <span class="hours-badge">10 hours saved/week</span>
+        </div>
+        <div class="field">
+          <div class="field-label">Business Problem</div>
+          <div class="field-value">Footwear trend cycles are fast. Being late to adopt trending silhouettes or colorways leads to missed sales and excess dead stock.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Proposed AI Solution</div>
+          <div class="field-value">An AI agent that analyzes Instagram, Pinterest, and TikTok fashion reels to identify shoe shapes (e.g., thick soles, slip-ons) and colors gaining viral traction, predicting trend timelines.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Expected Business Impact</div>
+          <div class="field-value highlight">Reduces lead time to launch trending styles by 4-6 weeks, boosting early-stage sales.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Suggested Tech Stack</div>
+          <div class="tech-stack">
+            <span class="tech-tag">YOLOv8</span>
+            <span class="tech-tag">Pinterest API</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Hugging Face</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="card-number">9</span>
+            <span>Automated Warehouse Stock Auditing (Camera Scan)</span>
+          </div>
+          <span class="hours-badge">25 hours saved/week</span>
+        </div>
+        <div class="field">
+          <div class="field-label">Business Problem</div>
+          <div class="field-value">Weekly manual box counting in warehouses is slow, expensive, and prone to human errors.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Proposed AI Solution</div>
+          <div class="field-value">A computer vision camera system mounted on forklift paths that reads barcode labels or shoe box stacks to count and verify warehouse levels automatically.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Expected Business Impact</div>
+          <div class="field-value highlight">99.8% inventory accuracy between the physical warehouse and the ERP register.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Suggested Tech Stack</div>
+          <div class="tech-stack">
+            <span class="tech-tag">OpenCV</span>
+            <span class="tech-tag">Roboflow</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">FastAPI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="card-number">10</span>
+            <span>Procurement Price & Vendor Optimization Copilot</span>
+          </div>
+          <span class="hours-badge">10 hours saved/week</span>
+        </div>
+        <div class="field">
+          <div class="field-label">Business Problem</div>
+          <div class="field-value">Negotiating raw material prices (cotton, rubber, recycled plastics, merino wool) with multiple vendors is slow and purchase timing is often sub-optimal.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Proposed AI Solution</div>
+          <div class="field-value">An AI procurement advisor that aggregates global commodity prices, projects shipping delays, analyzes historical vendor reliability, and drafts optimized purchase orders and negotiation emails.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Expected Business Impact</div>
+          <div class="field-value highlight">3-5% savings on raw material costs due to optimized purchasing timing and competitive vendor analysis.</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Suggested Tech Stack</div>
+          <div class="tech-stack">
+            <span class="tech-tag">LangChain</span>
+            <span class="tech-tag">Gemini API</span>
+            <span class="tech-tag">LangGraph</span>
+            <span class="tech-tag">Python</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
