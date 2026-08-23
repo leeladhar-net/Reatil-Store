@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retail Store Analytics — README Documentation</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --bg: #09090b;
+      --card-bg: #18181b;
+      --text: #f4f4f5;
+      --text-muted: #a1a1aa;
+      --border: #27272a;
+      --code-bg: #27272a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 50px 30px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 40px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 20px;
+    }
+
+    .logo-badge {
+      display: inline-block;
+      background: rgba(79, 70, 229, 0.15);
+      border: 1px solid rgba(79, 70, 229, 0.3);
+      color: #818cf8;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: white;
+      margin-top: 35px;
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    p, ul, ol {
+      margin-bottom: 18px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    ul, ol {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    code {
+      font-family: monospace;
+      background-color: var(--code-bg);
+      color: #f4f4f5;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+
+    pre {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin-bottom: 20px;
+    }
+
+    pre code {
+      background-color: transparent;
+      padding: 0;
+      border-radius: 0;
+      color: #e4e4e7;
+    }
+
+    /* Diagram wrapper */
+    .diagram {
+      font-family: monospace;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: 8px;
+      font-size: 12px;
+      color: var(--accent);
+      line-height: 1.3;
+      white-space: pre;
+      overflow-x: auto;
+      margin-bottom: 20px;
+    }
+
+    .alert {
+      background-color: rgba(79, 70, 229, 0.05);
+      border-left: 4px solid var(--primary);
+      padding: 15px 20px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 20px;
+    }
+
+    .alert p {
+      margin-bottom: 0;
+      color: #e4e4e7;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background-color: white;
+        color: black;
+        padding: 0;
+      }
+      
+      h1, h2 {
+        color: black;
+      }
+
+      p, ul, ol {
+        color: #27272a;
+      }
+
+      code {
+        background-color: #f4f4f5;
+        color: #18181b;
+        border: 1px solid #e4e4e7;
+      }
+
+      pre, .diagram {
+        background-color: #f4f4f5;
+        border: 1px solid #e4e4e7;
+        color: black;
+      }
+
+      pre code {
+        color: black;
+      }
+
+      .alert {
+        background-color: #fafafa;
+        border-left: 4px solid #4f46e5;
+        border-top: 1px solid #e4e4e7;
+        border-right: 1px solid #e4e4e7;
+        border-bottom: 1px solid #e4e4e7;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo-badge">Documentation Guide</div>
+      <h1>Retail Store Analytics — README</h1>
+      <p class="subtitle">Official technical documentation, system architecture flow, local setup guides, and project business assumptions for Neeman's Retail Intelligence.</p>
+    </header>
+
+    <h2>1. Problem Statement</h2>
+    <p>Modern Direct-to-Consumer (D2C) brands like Neeman's deal with complex supply chain and inventory flows across multiple retail formats (flagships, mall stores, outlets). Store managers and supply chain coordinators need to make fast, daily decisions regarding:</p>
+    <ul>
+      <li>Restocking fast-moving bestsellers to prevent stockouts (which represent lost revenue).</li>
+      <li>Identifying stagnant/dead stock to run targeted discounts or transfer units to high-performing locations.</li>
+      <li>Ranking store operational efficiency.</li>
+    </ul>
+    <p>Relying on manual spreadsheet audits is slow and error-prone. This application solves this by consolidating store sales and inventory logs, calculating deterministic retail metrics, and layer-integrating a Large Language Model (LLM) to deliver plain-English recommendations and a Q&A agent.</p>
+
+    <h2>2. Solution Overview</h2>
+    <p>The Retail Store Analytics dashboard provides a unified dashboard featuring:</p>
+    <ol>
+      <li><strong>KPI Dashboard</strong>: A high-level overview of total revenue, units sold, average sell-through %, and alerts.</li>
+      <li><strong>Interactive Chart</strong>: Recharts area chart showing daily units sold over 75 days, filterable by store and category.</li>
+      <li><strong>Store Leaderboard</strong>: Ranked store list based on a composite performance score.</li>
+      <li><strong>Inventory Health Tab</strong>: Filterable grid displaying every SKU &times; Store status (Healthy, Low Stock, Overstock, Dead Stock) and days of cover.</li>
+      <li><strong>Replenishment alerts page</strong>: restock recommendations with sliding controls that recalculate suggested reorder quantities in real-time.</li>
+      <li><strong>AI Insights &amp; Q&A Chat</strong>: Contextual insights and conversational Q&A powered by the Gemini 3.5 Flash model.</li>
+    </ol>
+
+    <h2>3. Architecture &amp; Data Flow</h2>
+    <div class="diagram">┌────────────────────────────────────────────────────────┐
+│                        Frontend                        │
+│          Next.js App Router (React Components)         │
+├────────────────────┬─────────────────┬─────────────────┤
+│     Dashboard      │    Inventory    │  Replenishment  │
+│    (Recharts)      │     Health      │     Alerts      │
+└─────────┬──────────┴────────┬────────┴────────┬────────┘
+          │                   │                 │
+          ▼                   ▼                 ▼
+┌────────────────────────────────────────────────────────┐
+│                      API Routes                        │
+│   /api/dashboard  /api/inventory  /api/replenishment   │
+│            /api/insights       /api/chat               │
+└─────────┬───────────────────┬─────────────────┬────────┘
+          │                   │                 │
+          ▼                   │                 ▼
+┌──────────────────┐          │       ┌──────────────────┐
+│   Prisma ORM     │          │       │    Gemini API    │
+│  (SQLite DB)     │          │       │(gemini-3.5-flash)│
+└─────────┬────────┘          │       └─────────▲────────┘
+          │                   │                 │
+          ▼                   ▼                 │
+┌────────────────────────────────────────┐      │
+│          Metrics Engine (lib/metrics)   │      │
+│   Calculates STR, Turnover, Days Cover ├──────┘
+│   (Aggregates and formats LLM context)  │
+└────────────────────────────────────────┘</div>
+
+    <h2>4. AI Integration &amp; Cache Policy</h2>
+    <ul>
+      <li><strong>Model Used</strong>: <code>gemini-3.5-flash</code> via the <code>@google/genai</code> SDK.</li>
+      <li><strong>Data Privacy &amp; Cost Reduction</strong>: Instead of sending raw, granular transaction logs (thousands of rows) to the LLM, the <strong>Metrics Engine</strong> calculates aggregates (KPIs, top/bottom performing stores, low cover alerts, stagnant SKUs) first. This summarized metadata is sent inside the prompt.</li>
+      <li><strong>Cache Strategy</strong>: AI Insights are generated and stored in a local cache file (<code>dev_insights_cache.json</code>). The application retrieves insights from the cache on page load. Users can trigger a fresh analysis by clicking the <strong>Regenerate</strong> button, preventing unnecessary API expenses.</li>
+    </ul>
+
+    <h2>5. Local Setup Instructions</h2>
+    <p><strong>Prerequisites</strong></p>
+    <ul>
+      <li>Node.js: v18.0.0 or higher (v24.14.1 used during development).</li>
+      <li>npm: v9.0.0 or higher.</li>
+    </ul>
+
+    <p><strong>Installation Steps</strong></p>
+    <ol>
+      <li>
+        <p>Clone/Move into project folder:</p>
+        <pre><code>cd retail-store-analytics</code></pre>
+      </li>
+      <li>
+        <p>Install dependencies:</p>
+        <pre><code>npm install --legacy-peer-deps</code></pre>
+      </li>
+      <li>
+        <p>Configure Environment Variables:</p>
+        <p>Create a <code>.env</code> file in the root of the project and add your Gemini API Key:</p>
+        <pre><code>DATABASE_URL="file:./dev.db"
+GEMINI_API_KEY="your_gemini_api_key_here"</code></pre>
+      </li>
+      <li>
+        <p>Initialize Database and Run Migrations:</p>
+        <pre><code>npx prisma migrate dev --name init</code></pre>
+      </li>
+      <li>
+        <p>Seed the Database:</p>
+        <p>Populates 75 days of transaction history (11,250 records) for 6 stores and 25 products:</p>
+        <pre><code>node prisma/seed.js</code></pre>
+      </li>
+      <li>
+        <p>Start the Development Server:</p>
+        <pre><code>npm run dev</code></pre>
+        <p>Open <code>http://localhost:3000</code> in your web browser.</p>
+      </li>
+    </ol>
+
+    <h2>6. Assumptions Made</h2>
+    <ol>
+      <li><strong>Transaction Timeline</strong>: Sales and inventory values are seeded for a fixed 75-day timeline (from June 5, 2026 to August 18, 2026). The "Current Stock" is defined as the closing stock of the most recent date in the database.</li>
+      <li><strong>Sell-Through Rate Formula</strong>: Calculated over the entire 75-day period as <code>(units_sold / (initial_opening_stock + units_received)) * 100</code>.</li>
+      <li><strong>Inventory Turnover</strong>: Calculated as <code>total_units_sold / average_stock</code> over the timeline, where <code>average_stock</code> represents the average of daily opening stocks for all SKUs combined.</li>
+      <li><strong>Days of Stock Cover</strong>: Calculated as <code>current_stock / trailing_7_day_sales_velocity</code>. If a SKU has zero sales over the trailing 7 days, its cover is set to <code>999</code> days (or <code>0</code> if current stock is also <code>0</code>).</li>
+      <li><strong>Dead Stock Warning</strong>: Triggered if a SKU has stock on hand but has generated <code>0</code> sales in the trailing 30 days.</li>
+      <li><strong>Store Performance Score Weights</strong>: Weighted composite index of Revenue (50%), Sell-Through % (30%), and Turnover (20%), normalized out of 100 relative to the highest-performing store.</li>
+    </ol>
+
+    <h2>7. Deployment Instructions</h2>
+    <p><strong>GitHub Repository Push</strong></p>
+    <ol>
+      <li>Create a new empty repository on GitHub. Do <strong>not</strong> initialize it with a README, <code>.gitignore</code>, or License.</li>
+      <li>Add the remote origin URL, set the branch to <code>main</code>, and push your code:</li>
+    </ol>
+    <pre><code>git remote add origin &lt;your-github-repo-url&gt;
+git branch -M main
+git push -u origin main</code></pre>
+
+    <p><strong>Render Deployment (Web Service)</strong></p>
+    <ol>
+      <li>Create a new <strong>Web Service</strong> on Render.</li>
+      <li>Connect your GitHub repository.</li>
+      <li>Configure the following deployment parameters:</li>
+      <ul>
+        <li>Runtime: <code>Node</code></li>
+        <li>Build Command: <code>npm install --legacy-peer-deps && npx prisma generate && node prisma/seed.js && npm run build</code></li>
+        <li>Start Command: <code>npm run start</code></li>
+      </ul>
+      <li>Add the following <strong>Environment Variables</strong> in Render's "Environment" tab:</li>
+      <ul>
+        <li><code>DATABASE_URL</code>: <code>file:./dev.db</code></li>
+        <li><code>GEMINI_API_KEY</code>: <code>your_gemini_api_key_here</code> (e.g. the AQ. auth key)</li>
+      </ul>
+      <li>Click <strong>Deploy Web Service</strong>. Render will install packages, compile the database client, seed the transaction history, build the production bundle, and run it. Custom assets and database states are safely built directly into the container.</li>
+    </ol>
+  </div>
+</body>
+</html>
